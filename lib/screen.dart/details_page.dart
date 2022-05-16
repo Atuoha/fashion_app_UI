@@ -58,12 +58,15 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
         body: Stack(
           children: [
-            Container(
-              constraints: const BoxConstraints.expand(),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(fashion.imageUrl),
+            Hero(
+              tag: fashion.id,
+              child: Container(
+                constraints: const BoxConstraints.expand(),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(fashion.imageUrl),
+                  ),
                 ),
               ),
             ),

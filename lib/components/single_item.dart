@@ -23,69 +23,72 @@ class SingleCard extends StatefulWidget {
 class _SingleCardState extends State<SingleCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Stack(
-        children: [
-          Card(
-            elevation: 3,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                widget.imageUrl,
-                width: double.infinity,
-                fit: BoxFit.cover,
+    return Hero(
+      tag: widget.id,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        child: Stack(
+          children: [
+            Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.name,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w200,
-                  ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  widget.imageUrl,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
-                Text(
-                  widget.location,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            right: 10,
-            bottom: 20,
-            child: IconButton(
-              onPressed: () {
-                setState(() {
-                  Provider.of<FashionData>(context, listen: false)
-                      .toggleItemToFashion(widget.id);
-                });
-              },
-              icon: Icon(
-                Provider.of<FashionData>(context, listen: false)
-                        .isItemOnFav(widget.id)
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border,
-                color: orangeVariant,
               ),
             ),
-          )
-        ],
+            Positioned(
+              bottom: 20,
+              left: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.name,
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w200,
+                    ),
+                  ),
+                  Text(
+                    widget.location,
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              right: 10,
+              bottom: 20,
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    Provider.of<FashionData>(context, listen: false)
+                        .toggleItemToFashion(widget.id);
+                  });
+                },
+                icon: Icon(
+                  Provider.of<FashionData>(context, listen: false)
+                          .isItemOnFav(widget.id)
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border,
+                  color: orangeVariant,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
